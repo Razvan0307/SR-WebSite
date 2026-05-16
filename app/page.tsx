@@ -21,15 +21,23 @@ import {
   Linkedin,
   X,
   Code2,
-  Layers,
   Sparkles,
   ChevronDown,
   Phone,
   ArrowRight,
+  GraduationCap,
+  Globe,
+  Menu,
+  ChevronRight,
+  Clock,
+  Users,
+  CheckCircle2,
+  BookOpen,
+  Laptop,
 } from "lucide-react";
 
 // ============================================================================
-// SITE CONFIGURATION
+// SITE CONFIGURATION - EDITATI AICI INFORMATIILE VOASTRE
 // ============================================================================
 const siteConfig = {
   name: "Stefan Ionut Razvan",
@@ -38,7 +46,7 @@ const siteConfig = {
   email: "contact@stefan-razvan.dev",
   phone: "+40 700 000 000",
   whatsapp: "40700000000",
-  profileImage: "/images/profile.jpg", // Add your profile image here
+  profileImage: "/images/profile.jpg", // Adaugati imaginea voastra aici
   social: {
     github: "https://github.com/stefan-razvan",
     linkedin: "https://linkedin.com/in/stefan-razvan",
@@ -61,24 +69,39 @@ const siteConfig = {
       { label: "Tehnologii", value: "15+" },
     ],
   },
+  // Doar 2 servicii: Meditatii si Dezvoltare Web
   services: [
     {
-      icon: "Code2",
+      icon: "GraduationCap",
+      title: "Meditatii Programare",
+      shortDescription: "Invata programare de la zero sau avanseaza-ti cunostintele.",
+      fullDescription: `Ofer meditatii personalizate pentru studenti si profesionisti care vor sa invete programare sau sa-si imbunatateasca abilitatile existente.`,
+      features: [
+        "Lectii 1-on-1 adaptate nivelului tau",
+        "HTML, CSS, JavaScript de baza pana la avansat",
+        "React, Next.js si framework-uri moderne",
+        "Proiecte practice pentru portofoliu",
+        "Pregatire interviuri tehnice",
+        "Flexibilitate program (online/offline)",
+      ],
+      pricing: "Pret: de la 80 RON / ora",
+      cta: "Programeaza o sedinta",
+    },
+    {
+      icon: "Globe",
       title: "Dezvoltare Web",
-      description:
-        "Aplicatii web moderne cu Next.js, React si TypeScript. Performanta optimizata si experienta utilizator exceptionala.",
-    },
-    {
-      icon: "Layers",
-      title: "Design UI/UX",
-      description:
-        "Interfete intuitive si atractive. Design responsive care functioneaza perfect pe orice dispozitiv.",
-    },
-    {
-      icon: "Sparkles",
-      title: "Medii Virtuale",
-      description:
-        "Experiente 3D interactive si realitate virtuala. Proiecte inovative la granita tehnologiei.",
+      shortDescription: "Site-uri si aplicatii web moderne, rapide si optimizate.",
+      fullDescription: `Dezvolt site-uri web si aplicatii personalizate folosind cele mai noi tehnologii. De la landing pages simple la platforme complexe.`,
+      features: [
+        "Site-uri de prezentare & landing pages",
+        "Magazine online (e-commerce)",
+        "Aplicatii web personalizate",
+        "Design responsive (mobil, tableta, desktop)",
+        "Optimizare SEO & performanta",
+        "Mentenanta si suport continuu",
+      ],
+      pricing: "Pret: de la 500 EUR / proiect",
+      cta: "Cere o oferta",
     },
   ],
   projects: [
@@ -86,32 +109,36 @@ const siteConfig = {
       title: "E-Commerce Platform",
       description: "Platforma completa de comert electronic cu Next.js si Stripe",
       tags: ["Next.js", "TypeScript", "Stripe", "Tailwind"],
-      image: "/images/projects/ecommerce.jpg", // Add your project image here
-      link: "#",
+      image: "/images/projects/ecommerce.jpg",
+      liveUrl: "https://example.com",
+      githubUrl: "https://github.com/stefan-razvan/ecommerce",
       color: "from-blue-500/20 to-cyan-500/20",
     },
     {
       title: "Dashboard Analytics",
       description: "Dashboard interactiv pentru vizualizarea datelor in timp real",
       tags: ["React", "D3.js", "Node.js", "MongoDB"],
-      image: "/images/projects/dashboard.jpg", // Add your project image here
-      link: "#",
+      image: "/images/projects/dashboard.jpg",
+      liveUrl: "https://example.com",
+      githubUrl: "https://github.com/stefan-razvan/dashboard",
       color: "from-emerald-500/20 to-teal-500/20",
     },
     {
       title: "VR Gallery",
       description: "Galerie de arta in realitate virtuala cu Three.js",
       tags: ["Three.js", "WebXR", "GLSL", "React"],
-      image: "/images/projects/vr-gallery.jpg", // Add your project image here
-      link: "#",
+      image: "/images/projects/vr-gallery.jpg",
+      liveUrl: "https://example.com",
+      githubUrl: "https://github.com/stefan-razvan/vr-gallery",
       color: "from-orange-500/20 to-amber-500/20",
     },
     {
       title: "Mobile App",
       description: "Aplicatie mobila cross-platform pentru management de proiecte",
       tags: ["React Native", "Firebase", "Redux", "TypeScript"],
-      image: "/images/projects/mobile-app.jpg", // Add your project image here
-      link: "#",
+      image: "/images/projects/mobile-app.jpg",
+      liveUrl: "https://example.com",
+      githubUrl: "https://github.com/stefan-razvan/mobile-app",
       color: "from-rose-500/20 to-pink-500/20",
     },
   ],
@@ -137,12 +164,15 @@ export default function App() {
 // ============================================================================
 const iconMap: Record<string, React.ElementType> = {
   Code2,
-  Layers,
+  GraduationCap,
+  Globe,
   Sparkles,
+  BookOpen,
+  Laptop,
 };
 
 // ============================================================================
-// THEME PROVIDER
+// THEME HOOK
 // ============================================================================
 function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
@@ -168,170 +198,225 @@ function useTheme() {
 }
 
 // ============================================================================
-// MOBILE MENU COMPONENT (New Dynamic Design)
+// MOBILE MENU - Design complet refacut
 // ============================================================================
 function MobileMenu({
   isOpen,
   onClose,
   onContactClick,
+  theme,
+  toggleTheme,
 }: {
   isOpen: boolean;
   onClose: () => void;
   onContactClick: () => void;
+  theme: "light" | "dark";
+  toggleTheme: () => void;
 }) {
   const menuVariants = {
     closed: {
       opacity: 0,
-      transition: {
-        staggerChildren: 0.05,
-        staggerDirection: -1,
-      },
+      transition: { staggerChildren: 0.03, staggerDirection: -1 },
     },
     open: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.07,
-        delayChildren: 0.2,
-      },
+      transition: { staggerChildren: 0.05, delayChildren: 0.15 },
     },
   };
 
   const itemVariants = {
-    closed: { x: -20, opacity: 0 },
+    closed: { x: -30, opacity: 0 },
     open: { x: 0, opacity: 1 },
   };
 
   const handleNavClick = (href: string) => {
     onClose();
-    // Small delay to allow animation to start before scroll
     setTimeout(() => {
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
-    }, 100);
+    }, 150);
   };
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
-          {/* Full screen backdrop */}
+        <m.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-50"
+        >
+          {/* Animated background with gradient */}
           <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-background/95 backdrop-blur-xl z-40"
-            onClick={onClose}
+            initial={{ scale: 0, borderRadius: "100%" }}
+            animate={{ scale: 1, borderRadius: "0%" }}
+            exit={{ scale: 0, borderRadius: "100%" }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/50 origin-top-right"
           />
 
-          {/* Menu content */}
-          <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex flex-col"
-          >
-            {/* Close button */}
-            <div className="flex justify-end p-6">
-              <m.button
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                onClick={onClose}
-                className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center"
-                aria-label="Close menu"
+          {/* Decorative elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <m.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              className="absolute -top-20 -right-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl"
+            />
+            <m.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.3 }}
+              exit={{ opacity: 0 }}
+              transition={{ delay: 0.1 }}
+              className="absolute bottom-20 -left-20 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl"
+            />
+          </div>
+
+          {/* Content */}
+          <div className="relative h-full flex flex-col">
+            {/* Header with close & theme */}
+            <div className="flex items-center justify-between p-5">
+              <m.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="text-2xl font-bold"
               >
-                <X size={24} />
-              </m.button>
+                SR<span className="text-emerald-500">.</span>
+              </m.span>
+
+              <div className="flex items-center gap-2">
+                {/* Theme toggle in menu */}
+                <m.button
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.1 }}
+                  onClick={toggleTheme}
+                  className="w-11 h-11 rounded-xl bg-secondary/80 flex items-center justify-center"
+                  aria-label="Toggle theme"
+                >
+                  {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+                </m.button>
+
+                {/* Close button */}
+                <m.button
+                  initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
+                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                  transition={{ delay: 0.15 }}
+                  onClick={onClose}
+                  className="w-11 h-11 rounded-xl bg-foreground text-background flex items-center justify-center"
+                  aria-label="Close menu"
+                >
+                  <X size={20} />
+                </m.button>
+              </div>
             </div>
 
-            {/* Navigation links */}
+            {/* Navigation */}
             <m.nav
               variants={menuVariants}
               initial="closed"
               animate="open"
               exit="closed"
-              className="flex-1 flex flex-col justify-center px-8"
+              className="flex-1 flex flex-col justify-center px-6 -mt-10"
             >
               {siteConfig.navLinks.map((link, index) => (
                 <m.button
                   key={link.href}
                   variants={itemVariants}
                   onClick={() => handleNavClick(link.href)}
-                  className="group py-4 border-b border-border/30 first:border-t text-left"
+                  className="group relative py-4 text-left overflow-hidden"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <span className="text-sm text-muted-foreground font-mono">
+                    <div className="flex items-baseline gap-4">
+                      <span className="text-xs font-mono text-emerald-500/70 w-6">
                         0{index + 1}
                       </span>
-                      <span className="text-3xl font-semibold text-foreground group-hover:text-foreground/70 transition-colors">
+                      <span className="text-3xl font-semibold text-foreground tracking-tight">
                         {link.label}
                       </span>
                     </div>
                     <m.div
-                      initial={{ x: -10, opacity: 0 }}
-                      whileHover={{ x: 0, opacity: 1 }}
                       className="text-muted-foreground"
+                      initial={{ x: -5, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 0.5 }}
                     >
-                      <ArrowRight size={24} />
+                      <ChevronRight size={20} />
                     </m.div>
                   </div>
+                  {/* Animated underline */}
+                  <m.div
+                    className="absolute bottom-3 left-10 right-0 h-px bg-gradient-to-r from-border to-transparent"
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    transition={{ delay: 0.1 * index }}
+                  />
                 </m.button>
               ))}
+            </m.nav>
 
-              {/* Contact CTA */}
-              <m.div variants={itemVariants} className="mt-8">
-                <m.button
-                  onClick={() => {
-                    onContactClick();
-                    onClose();
-                  }}
-                  className="w-full py-4 bg-foreground text-background rounded-2xl font-semibold text-lg flex items-center justify-center gap-2"
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Mail size={20} />
-                  Contacteaza-ma
-                </m.button>
-              </m.div>
-
-              {/* Social links */}
-              <m.div
-                variants={itemVariants}
-                className="flex justify-center gap-6 mt-8"
+            {/* Footer with CTA and social */}
+            <m.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="p-6 space-y-4"
+            >
+              <m.button
+                onClick={() => {
+                  onContactClick();
+                  onClose();
+                }}
+                className="w-full py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-2xl font-semibold text-lg flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/25"
+                whileTap={{ scale: 0.98 }}
               >
+                <Mail size={20} />
+                Contacteaza-ma
+              </m.button>
+
+              <div className="flex items-center justify-center gap-4">
                 <a
                   href={siteConfig.social.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-full bg-secondary text-foreground"
+                  className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
                   aria-label="GitHub"
                 >
-                  <Github size={24} />
+                  <Github size={22} />
                 </a>
                 <a
                   href={siteConfig.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-full bg-secondary text-foreground"
+                  className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin size={24} />
+                  <Linkedin size={22} />
                 </a>
-              </m.div>
-            </m.nav>
-          </m.div>
-        </>
+                <a
+                  href={`https://wa.me/${siteConfig.whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500"
+                  aria-label="WhatsApp"
+                >
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                  </svg>
+                </a>
+              </div>
+            </m.div>
+          </div>
+        </m.div>
       )}
     </AnimatePresence>
   );
 }
 
 // ============================================================================
-// NAVBAR COMPONENT (Enhanced)
+// NAVBAR
 // ============================================================================
 function Navbar({
   theme,
@@ -349,8 +434,6 @@ function Navbar({
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-
-      // Detect active section
       const sections = siteConfig.navLinks.map((link) => link.href);
       for (const section of sections.reverse()) {
         const element = document.querySelector(section);
@@ -363,12 +446,10 @@ function Navbar({
         }
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -400,14 +481,7 @@ function Navbar({
               className="relative text-xl md:text-2xl font-bold text-foreground"
               whileHover={{ scale: 1.05 }}
             >
-              <span className="relative z-10">SR</span>
-              <m.span
-                className="absolute -inset-2 bg-foreground/5 rounded-lg -z-0"
-                initial={{ scale: 0 }}
-                whileHover={{ scale: 1 }}
-                transition={{ duration: 0.2 }}
-              />
-              <span className="text-emerald-500">.</span>
+              SR<span className="text-emerald-500">.</span>
             </m.a>
 
             {/* Desktop Menu */}
@@ -434,8 +508,8 @@ function Navbar({
               ))}
             </div>
 
-            {/* Actions */}
-            <div className="flex items-center gap-2 md:gap-3">
+            {/* Desktop Actions */}
+            <div className="hidden md:flex items-center gap-3">
               <m.button
                 onClick={toggleTheme}
                 className="p-2.5 rounded-full bg-secondary/80 hover:bg-secondary transition-colors"
@@ -450,7 +524,6 @@ function Navbar({
                       initial={{ rotate: -90, opacity: 0 }}
                       animate={{ rotate: 0, opacity: 1 }}
                       exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
                     >
                       <Sun size={18} />
                     </m.div>
@@ -460,7 +533,6 @@ function Navbar({
                       initial={{ rotate: 90, opacity: 0 }}
                       animate={{ rotate: 0, opacity: 1 }}
                       exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
                     >
                       <Moon size={18} />
                     </m.div>
@@ -470,37 +542,34 @@ function Navbar({
 
               <m.button
                 onClick={onContactClick}
-                className="hidden md:flex px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-medium hover:opacity-90 transition-opacity items-center gap-2"
+                className="px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Contact
                 <ArrowRight size={16} />
               </m.button>
-
-              {/* Hamburger Menu Button */}
-              <m.button
-                onClick={() => setMobileMenuOpen(true)}
-                className="md:hidden p-2.5 rounded-full bg-secondary/80"
-                whileTap={{ scale: 0.9 }}
-                aria-label="Open menu"
-              >
-                <div className="w-5 h-4 flex flex-col justify-between">
-                  <m.span className="w-full h-0.5 bg-foreground rounded-full" />
-                  <m.span className="w-3/4 h-0.5 bg-foreground rounded-full" />
-                  <m.span className="w-1/2 h-0.5 bg-foreground rounded-full" />
-                </div>
-              </m.button>
             </div>
+
+            {/* Mobile Menu Button - Redesigned */}
+            <m.button
+              onClick={() => setMobileMenuOpen(true)}
+              className="md:hidden w-11 h-11 rounded-xl bg-secondary/80 flex items-center justify-center"
+              whileTap={{ scale: 0.9 }}
+              aria-label="Open menu"
+            >
+              <Menu size={20} />
+            </m.button>
           </div>
         </div>
       </m.nav>
 
-      {/* Mobile Menu */}
       <MobileMenu
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
         onContactClick={onContactClick}
+        theme={theme}
+        toggleTheme={toggleTheme}
       />
     </>
   );
@@ -520,7 +589,6 @@ function Laptop3D() {
       const y = (e.clientY / window.innerHeight - 0.5) * 20;
       setMousePos({ x, y });
     };
-
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
@@ -533,37 +601,21 @@ function Laptop3D() {
     <m.div
       ref={ref}
       className="relative w-full max-w-lg mx-auto"
-      style={{
-        perspective: "1000px",
-        transformStyle: "preserve-3d",
-      }}
+      style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.3 }}
     >
       <m.div
         className="relative"
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: "preserve-3d",
-        }}
-        animate={{
-          y: [0, -10, 0],
-        }}
-        transition={{
-          y: {
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          },
-        }}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        animate={{ y: [0, -10, 0] }}
+        transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
       >
         {/* Laptop Screen */}
         <div className="relative bg-gradient-to-b from-zinc-800 to-zinc-900 rounded-t-xl p-2 border border-zinc-700/50">
           <div className="absolute top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-zinc-700" />
           <div className="bg-zinc-950 rounded-lg overflow-hidden aspect-[16/10] relative">
-            {/* Screen Content - Code Animation */}
             <div className="absolute inset-0 p-4 font-mono text-xs sm:text-sm">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -575,7 +627,6 @@ function Laptop3D() {
             </div>
           </div>
         </div>
-
         {/* Laptop Base */}
         <div className="relative">
           <div className="h-3 bg-gradient-to-b from-zinc-700 to-zinc-800 rounded-b-sm" />
@@ -584,8 +635,6 @@ function Laptop3D() {
             <div className="w-16 h-1 bg-zinc-700/50 rounded-full" />
           </div>
         </div>
-
-        {/* Reflection/Shadow */}
         <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-4/5 h-4 bg-foreground/5 blur-xl rounded-full" />
       </m.div>
     </m.div>
@@ -593,7 +642,7 @@ function Laptop3D() {
 }
 
 // ============================================================================
-// CODE ANIMATION COMPONENT
+// CODE ANIMATION
 // ============================================================================
 function CodeAnimation({ code }: { code: string }) {
   const [displayedCode, setDisplayedCode] = useState("");
@@ -618,14 +667,8 @@ function CodeAnimation({ code }: { code: string }) {
   const highlightSyntax = (text: string) => {
     return text
       .replace(/(\/\/.*)/g, '<span class="text-zinc-500">$1</span>')
-      .replace(
-        /\b(import|export|default|function|return|const)\b/g,
-        '<span class="text-pink-400">$1</span>'
-      )
-      .replace(
-        /\b(from|className)\b/g,
-        '<span class="text-cyan-400">$1</span>'
-      )
+      .replace(/\b(import|export|default|function|return|const)\b/g, '<span class="text-pink-400">$1</span>')
+      .replace(/\b(from|className)\b/g, '<span class="text-cyan-400">$1</span>')
       .replace(/(['"`].*?['"`])/g, '<span class="text-emerald-400">$1</span>')
       .replace(/(&lt;\/?[a-zA-Z.]+)/g, '<span class="text-blue-400">$1</span>')
       .replace(/(\{|\}|\(|\))/g, '<span class="text-yellow-400">$1</span>');
@@ -635,9 +678,7 @@ function CodeAnimation({ code }: { code: string }) {
     <pre className="text-zinc-300 leading-relaxed whitespace-pre-wrap break-words">
       <code
         dangerouslySetInnerHTML={{
-          __html: highlightSyntax(
-            displayedCode.replace(/</g, "&lt;").replace(/>/g, "&gt;")
-          ),
+          __html: highlightSyntax(displayedCode.replace(/</g, "&lt;").replace(/>/g, "&gt;")),
         }}
       />
       <span className="animate-pulse text-cyan-400">|</span>
@@ -650,22 +691,15 @@ function CodeAnimation({ code }: { code: string }) {
 // ============================================================================
 function HeroSection({ onContactClick }: { onContactClick: () => void }) {
   return (
-    <section
-      id="hero"
-      className="min-h-screen flex items-center justify-center pt-16 pb-8 px-4 relative overflow-hidden"
-    >
-      {/* Animated Background */}
+    <section id="hero" className="min-h-screen flex items-center justify-center pt-16 pb-8 px-4 relative overflow-hidden">
       <div className="absolute inset-0">
-        {/* Grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] dark:opacity-100 opacity-50" />
-        {/* Gradient orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-6xl mx-auto w-full relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
           <div className="text-center lg:text-left">
             <m.div
               initial={{ opacity: 0, y: 20 }}
@@ -721,23 +755,16 @@ function HeroSection({ onContactClick }: { onContactClick: () => void }) {
               >
                 <Mail size={18} />
                 Contacteaza-ma
-                <m.span
-                  className="inline-block"
-                  initial={{ x: 0 }}
-                  whileHover={{ x: 5 }}
-                >
-                  <ArrowRight size={18} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </m.span>
               </m.button>
 
               <m.a
                 href="#projects"
-                className="px-6 py-3 border border-border rounded-full font-medium hover:bg-secondary transition-colors flex items-center gap-2 group"
+                className="px-6 py-3 border border-border rounded-full font-medium hover:bg-secondary transition-colors flex items-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Vezi Proiecte
-                <ExternalLink size={18} className="group-hover:rotate-12 transition-transform" />
+                <ExternalLink size={18} />
               </m.a>
             </m.div>
 
@@ -770,11 +797,9 @@ function HeroSection({ onContactClick }: { onContactClick: () => void }) {
             </m.div>
           </div>
 
-          {/* 3D Laptop */}
           <Laptop3D />
         </div>
 
-        {/* Scroll Indicator */}
         <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -797,7 +822,7 @@ function HeroSection({ onContactClick }: { onContactClick: () => void }) {
 }
 
 // ============================================================================
-// ANIMATED IMAGE COMPONENT
+// ANIMATED IMAGE with 3D effect
 // ============================================================================
 function AnimatedImage({
   src,
@@ -821,8 +846,8 @@ function AnimatedImage({
     const rect = ref.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x * 20);
-    mouseY.set(y * 20);
+    mouseX.set(x * 15);
+    mouseY.set(y * 15);
   };
 
   const handleMouseLeave = () => {
@@ -839,33 +864,24 @@ function AnimatedImage({
       className={`relative overflow-hidden ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{
-        perspective: "1000px",
-      }}
+      style={{ perspective: "1000px" }}
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.3 }}
     >
       <m.div
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: "preserve-3d",
-        }}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         className="relative w-full h-full"
       >
-        {/* Loading shimmer */}
         {!isLoaded && !hasError && (
           <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/50 to-secondary animate-pulse" />
         )}
 
-        {/* Fallback gradient */}
         {hasError && (
           <div className="absolute inset-0 bg-gradient-to-br from-zinc-700 to-zinc-900 flex items-center justify-center">
             <span className="text-4xl md:text-6xl font-bold text-zinc-500">{fallbackText}</span>
           </div>
         )}
 
-        {/* Actual image */}
         {!hasError && (
           <Image
             src={src}
@@ -878,7 +894,6 @@ function AnimatedImage({
           />
         )}
 
-        {/* Shine effect on hover */}
         <m.div
           className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0"
           whileHover={{ opacity: 1, x: ["100%", "-100%"] }}
@@ -905,7 +920,6 @@ function AboutSection() {
 
   return (
     <section id="about" ref={ref} className="py-24 px-4 relative overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute top-1/2 left-0 w-72 h-72 bg-emerald-500/5 rounded-full blur-3xl -translate-y-1/2" />
 
       <div className="max-w-6xl mx-auto">
@@ -926,20 +940,14 @@ function AboutSection() {
         </m.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Image with Parallax and 3D Effect */}
           <m.div style={{ y }} className="relative order-2 lg:order-1">
-            <m.div
-              style={{ scale, rotate }}
-              className="relative aspect-[4/5] max-w-md mx-auto"
-            >
-              {/* Decorative frame */}
+            <m.div style={{ scale, rotate }} className="relative aspect-[4/5] max-w-md mx-auto">
               <m.div
                 className="absolute -inset-4 border-2 border-emerald-500/20 rounded-2xl"
                 animate={{ rotate: [0, 2, 0, -2, 0] }}
                 transition={{ duration: 10, repeat: Infinity }}
               />
 
-              {/* Main image container */}
               <div className="relative h-full rounded-2xl overflow-hidden border border-border shadow-2xl">
                 <AnimatedImage
                   src={siteConfig.profileImage}
@@ -947,11 +955,7 @@ function AboutSection() {
                   fallbackText="SR"
                   className="absolute inset-0"
                 />
-
-                {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-
-                {/* Info overlay */}
                 <m.div
                   className="absolute bottom-0 left-0 right-0 p-6"
                   initial={{ opacity: 0, y: 20 }}
@@ -966,7 +970,6 @@ function AboutSection() {
                 </m.div>
               </div>
 
-              {/* Floating elements */}
               <m.div
                 className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-emerald-500/20 to-blue-500/20 rounded-2xl border border-white/10 backdrop-blur-sm flex items-center justify-center"
                 animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
@@ -985,7 +988,6 @@ function AboutSection() {
             </m.div>
           </m.div>
 
-          {/* Content */}
           <div className="order-1 lg:order-2">
             <m.p
               initial={{ opacity: 0, y: 30 }}
@@ -997,7 +999,6 @@ function AboutSection() {
               {siteConfig.about.description}
             </m.p>
 
-            {/* Stats */}
             <div className="grid grid-cols-2 gap-4">
               {siteConfig.about.stats.map((stat, index) => (
                 <m.div
@@ -1007,23 +1008,16 @@ function AboutSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   whileHover={{ y: -5, scale: 1.02 }}
-                  className="p-5 bg-gradient-to-br from-secondary/80 to-secondary/40 rounded-2xl border border-border hover:border-emerald-500/30 transition-colors group"
+                  className="p-5 bg-gradient-to-br from-secondary/80 to-secondary/40 rounded-2xl border border-border hover:border-emerald-500/30 transition-colors"
                 >
-                  <m.div
-                    className="text-3xl sm:text-4xl font-bold text-foreground mb-1"
-                    initial={{ scale: 1 }}
-                    whileHover={{ scale: 1.1 }}
-                  >
+                  <m.div className="text-3xl sm:text-4xl font-bold text-foreground mb-1">
                     {stat.value}
                   </m.div>
-                  <div className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                    {stat.label}
-                  </div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </m.div>
               ))}
             </div>
 
-            {/* Tech stack badges */}
             <m.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1031,21 +1025,19 @@ function AboutSection() {
               transition={{ delay: 0.5 }}
               className="mt-8 flex flex-wrap gap-2"
             >
-              {["React", "Next.js", "TypeScript", "Node.js", "Three.js", "Tailwind"].map(
-                (tech, i) => (
-                  <m.span
-                    key={tech}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6 + i * 0.05 }}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    className="px-3 py-1.5 text-xs font-medium bg-foreground/5 border border-border rounded-full text-muted-foreground hover:text-foreground hover:border-emerald-500/30 transition-colors cursor-default"
-                  >
-                    {tech}
-                  </m.span>
-                )
-              )}
+              {["React", "Next.js", "TypeScript", "Node.js", "Three.js", "Tailwind"].map((tech, i) => (
+                <m.span
+                  key={tech}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6 + i * 0.05 }}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="px-3 py-1.5 text-xs font-medium bg-foreground/5 border border-border rounded-full text-muted-foreground hover:text-foreground hover:border-emerald-500/30 transition-colors cursor-default"
+                >
+                  {tech}
+                </m.span>
+              ))}
             </m.div>
           </div>
         </div>
@@ -1055,12 +1047,120 @@ function AboutSection() {
 }
 
 // ============================================================================
+// SERVICE CARD - Expandable with details
+// ============================================================================
+function ServiceCard({
+  service,
+  index,
+  onContactClick,
+}: {
+  service: (typeof siteConfig.services)[0];
+  index: number;
+  onContactClick: () => void;
+}) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const Icon = iconMap[service.icon];
+
+  return (
+    <m.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.15 }}
+      className="group relative"
+    >
+      {/* Glow effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-blue-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      <m.div
+        className="relative bg-card rounded-3xl border border-border hover:border-emerald-500/30 transition-all duration-300 overflow-hidden"
+        layout
+      >
+        {/* Main content */}
+        <div className="p-8">
+          <m.div
+            className="w-16 h-16 bg-gradient-to-br from-emerald-500/20 to-blue-500/20 rounded-2xl flex items-center justify-center mb-6"
+            whileHover={{ rotate: 5, scale: 1.1 }}
+          >
+            <Icon size={32} className="text-emerald-600 dark:text-emerald-400" />
+          </m.div>
+
+          <h3 className="text-2xl font-bold text-foreground mb-3">{service.title}</h3>
+          <p className="text-muted-foreground mb-6">{service.shortDescription}</p>
+
+          {/* Expand button */}
+          <m.button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium"
+            whileHover={{ x: 5 }}
+          >
+            {isExpanded ? "Vezi mai putin" : "Vezi detalii"}
+            <m.span animate={{ rotate: isExpanded ? 90 : 0 }}>
+              <ChevronRight size={18} />
+            </m.span>
+          </m.button>
+        </div>
+
+        {/* Expandable details */}
+        <AnimatePresence>
+          {isExpanded && (
+            <m.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <div className="px-8 pb-8 border-t border-border pt-6">
+                <p className="text-muted-foreground mb-6">{service.fullDescription}</p>
+
+                {/* Features list */}
+                <div className="space-y-3 mb-6">
+                  {service.features.map((feature, i) => (
+                    <m.div
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                      className="flex items-start gap-3"
+                    >
+                      <CheckCircle2 size={18} className="text-emerald-500 mt-0.5 shrink-0" />
+                      <span className="text-sm text-foreground">{feature}</span>
+                    </m.div>
+                  ))}
+                </div>
+
+                {/* Pricing */}
+                <div className="flex items-center gap-2 mb-6 p-4 bg-emerald-500/10 rounded-xl">
+                  <Clock size={18} className="text-emerald-500" />
+                  <span className="font-semibold text-foreground">{service.pricing}</span>
+                </div>
+
+                {/* CTA */}
+                <m.button
+                  onClick={onContactClick}
+                  className="w-full py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl font-semibold flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {service.cta}
+                  <ArrowRight size={18} />
+                </m.button>
+              </div>
+            </m.div>
+          )}
+        </AnimatePresence>
+      </m.div>
+    </m.div>
+  );
+}
+
+// ============================================================================
 // SERVICES SECTION
 // ============================================================================
-function ServicesSection() {
+function ServicesSection({ onContactClick }: { onContactClick: () => void }) {
   return (
     <section id="services" className="py-24 px-4 bg-secondary/30 relative overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
 
       <div className="max-w-6xl mx-auto relative">
@@ -1074,65 +1174,54 @@ function ServicesSection() {
           <span className="text-sm font-mono text-emerald-600 dark:text-emerald-400 mb-4 block">
             02. SERVICII
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Ce ofer?
-          </h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Ce ofer?</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
+          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+            Servicii personalizate pentru a te ajuta sa inveti programare sau sa-ti construiesti prezenta online
+          </p>
         </m.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {siteConfig.services.map((service, index) => {
-            const Icon = iconMap[service.icon];
-            return (
-              <m.div
-                key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="group relative"
-              >
-                {/* Card glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-blue-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                <div className="relative p-8 bg-card rounded-2xl border border-border hover:border-emerald-500/30 transition-all duration-300 h-full">
-                  {/* Icon */}
-                  <m.div
-                    className="w-14 h-14 bg-gradient-to-br from-emerald-500/20 to-blue-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
-                    whileHover={{ rotate: 5 }}
-                  >
-                    <Icon size={28} className="text-emerald-600 dark:text-emerald-400" />
-                  </m.div>
-
-                  {/* Content */}
-                  <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
-
-                  {/* Arrow indicator */}
-                  <m.div
-                    className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity"
-                    initial={{ x: -10 }}
-                    whileHover={{ x: 0 }}
-                  >
-                    <ArrowRight size={20} className="text-emerald-500" />
-                  </m.div>
-                </div>
-              </m.div>
-            );
-          })}
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {siteConfig.services.map((service, index) => (
+            <ServiceCard
+              key={service.title}
+              service={service}
+              index={index}
+              onContactClick={onContactClick}
+            />
+          ))}
         </div>
+
+        {/* Additional info */}
+        <m.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="mt-12 text-center"
+        >
+          <div className="inline-flex items-center gap-6 flex-wrap justify-center text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <Users size={18} className="text-emerald-500" />
+              <span>Sesiuni 1-on-1</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Clock size={18} className="text-emerald-500" />
+              <span>Program flexibil</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 size={18} className="text-emerald-500" />
+              <span>Garantie satisfactie</span>
+            </div>
+          </div>
+        </m.div>
       </div>
     </section>
   );
 }
 
 // ============================================================================
-// PROJECT CARD COMPONENT
+// PROJECT CARD - Fixed links
 // ============================================================================
 function ProjectCard({
   project,
@@ -1144,17 +1233,15 @@ function ProjectCard({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <m.a
-      href={project.link}
+    <m.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="group relative block overflow-hidden rounded-2xl border border-border bg-card hover:border-emerald-500/30 transition-all duration-500"
+      className="group relative overflow-hidden rounded-2xl border border-border bg-card hover:border-emerald-500/30 transition-all duration-500"
     >
-      {/* Background glow */}
       <m.div
         className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
       />
@@ -1168,13 +1255,41 @@ function ProjectCard({
           className="absolute inset-0"
         />
 
-        {/* Image overlay */}
         <m.div
           className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent"
-          animate={{ opacity: isHovered ? 0.8 : 0.6 }}
+          animate={{ opacity: isHovered ? 0.9 : 0.7 }}
         />
 
-        {/* Floating tags on hover */}
+        {/* Action buttons on hover */}
+        <m.div
+          className="absolute top-4 right-4 flex gap-2"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : -10 }}
+          transition={{ duration: 0.3 }}
+        >
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            aria-label="View live site"
+          >
+            <ExternalLink size={18} />
+          </a>
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            aria-label="View source code"
+          >
+            <Github size={18} />
+          </a>
+        </m.div>
+
+        {/* Tags on hover */}
         <m.div
           className="absolute top-4 left-4 flex flex-wrap gap-2"
           initial={{ opacity: 0, y: -10 }}
@@ -1195,29 +1310,22 @@ function ProjectCard({
       {/* Project Info */}
       <div className="relative p-6">
         <m.h3
-          className="text-xl font-semibold text-foreground mb-2 flex items-center gap-2"
+          className="text-xl font-semibold text-foreground mb-2"
           animate={{ x: isHovered ? 5 : 0 }}
         >
           {project.title}
-          <m.span
-            animate={{ x: isHovered ? 5 : 0, opacity: isHovered ? 1 : 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <ExternalLink size={16} className="text-emerald-500" />
-          </m.span>
         </m.h3>
 
         <p className="text-muted-foreground mb-4">{project.description}</p>
 
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
-            <m.span
+            <span
               key={tag}
               className="px-3 py-1 text-xs bg-secondary rounded-full text-muted-foreground"
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(16, 185, 129, 0.1)" }}
             >
               {tag}
-            </m.span>
+            </span>
           ))}
         </div>
       </div>
@@ -1228,7 +1336,7 @@ function ProjectCard({
         animate={{ scale: isHovered ? 1.5 : 1 }}
         transition={{ duration: 0.5 }}
       />
-    </m.a>
+    </m.div>
   );
 }
 
@@ -1238,7 +1346,6 @@ function ProjectCard({
 function ProjectsSection() {
   return (
     <section id="projects" className="py-24 px-4 relative overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
 
       <div className="max-w-6xl mx-auto relative">
@@ -1252,9 +1359,7 @@ function ProjectsSection() {
           <span className="text-sm font-mono text-emerald-600 dark:text-emerald-400 mb-4 block">
             03. PORTOFOLIU
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Proiecte Recente
-          </h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Proiecte Recente</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
             O selectie de proiecte care demonstreaza abilitatile mele in dezvoltarea web moderna
@@ -1267,7 +1372,6 @@ function ProjectsSection() {
           ))}
         </div>
 
-        {/* CTA */}
         <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1299,7 +1403,6 @@ function ProjectsSection() {
 function ContactSection({ onContactClick }: { onContactClick: () => void }) {
   return (
     <section id="contact" className="py-24 px-4 bg-secondary/30 relative overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-emerald-500/10 via-blue-500/10 to-emerald-500/10 rounded-full blur-3xl" />
       </div>
@@ -1318,8 +1421,7 @@ function ContactSection({ onContactClick }: { onContactClick: () => void }) {
             Hai sa Colaboram
           </h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-            Ai un proiect in minte? Sunt mereu deschis pentru noi oportunitati si
-            colaborari interesante. Hai sa transformam ideea ta in realitate.
+            Ai un proiect in minte sau vrei sa inveti programare? Sunt mereu deschis pentru noi oportunitati.
           </p>
 
           <m.button
@@ -1330,15 +1432,11 @@ function ContactSection({ onContactClick }: { onContactClick: () => void }) {
           >
             <Mail size={22} />
             Trimite un Mesaj
-            <m.span
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 1, repeat: Infinity }}
-            >
+            <m.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1, repeat: Infinity }}>
               <ArrowRight size={22} />
             </m.span>
           </m.button>
 
-          {/* Quick contact info */}
           <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -1375,7 +1473,9 @@ function Footer() {
     <footer className="py-8 px-4 border-t border-border">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <span className="text-xl font-bold">SR<span className="text-emerald-500">.</span></span>
+          <span className="text-xl font-bold">
+            SR<span className="text-emerald-500">.</span>
+          </span>
           <span className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} Toate drepturile rezervate.
           </span>
@@ -1408,18 +1508,11 @@ function Footer() {
 // ============================================================================
 // CONTACT MODAL
 // ============================================================================
-function ContactModal({
-  isOpen,
-  onClose,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-}) {
+function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -1428,20 +1521,17 @@ function ContactModal({
             className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50"
           />
 
-          {/* Modal */}
           <m.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-card border border-border rounded-3xl p-8 z-50 shadow-2xl"
+            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-md bg-card border border-border rounded-3xl p-8 z-50 shadow-2xl"
           >
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h3 className="text-2xl font-bold text-foreground">Contact</h3>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Alege metoda preferata
-                </p>
+                <p className="text-sm text-muted-foreground mt-1">Alege metoda preferata</p>
               </div>
               <m.button
                 onClick={onClose}
@@ -1466,9 +1556,7 @@ function ContactModal({
                 </div>
                 <div className="flex-1">
                   <div className="font-semibold text-foreground">Email</div>
-                  <div className="text-sm text-muted-foreground">
-                    {siteConfig.email}
-                  </div>
+                  <div className="text-sm text-muted-foreground">{siteConfig.email}</div>
                 </div>
                 <ArrowRight size={20} className="text-muted-foreground group-hover:text-emerald-500 transition-colors" />
               </m.a>
@@ -1484,9 +1572,7 @@ function ContactModal({
                 </div>
                 <div className="flex-1">
                   <div className="font-semibold text-foreground">Telefon</div>
-                  <div className="text-sm text-muted-foreground">
-                    {siteConfig.phone}
-                  </div>
+                  <div className="text-sm text-muted-foreground">{siteConfig.phone}</div>
                 </div>
                 <ArrowRight size={20} className="text-muted-foreground group-hover:text-emerald-500 transition-colors" />
               </m.a>
@@ -1505,12 +1591,8 @@ function ContactModal({
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <div className="font-semibold text-emerald-600 dark:text-emerald-400">
-                    WhatsApp
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    Mesaj instant
-                  </div>
+                  <div className="font-semibold text-emerald-600 dark:text-emerald-400">WhatsApp</div>
+                  <div className="text-sm text-muted-foreground">Mesaj instant</div>
                 </div>
                 <ArrowRight size={20} className="text-emerald-500" />
               </m.a>
@@ -1541,7 +1623,6 @@ function WhatsAppFAB() {
       onHoverEnd={() => setIsHovered(false)}
       aria-label="Contact via WhatsApp"
     >
-      {/* Tooltip */}
       <AnimatePresence>
         {isHovered && (
           <m.div
@@ -1560,7 +1641,6 @@ function WhatsAppFAB() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
-        {/* Pulse Effect */}
         <span className="absolute w-full h-full rounded-full bg-emerald-500 animate-ping opacity-30" />
         <svg viewBox="0 0 24 24" width="28" height="28" fill="white">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
@@ -1571,7 +1651,7 @@ function WhatsAppFAB() {
 }
 
 // ============================================================================
-// MAIN PAGE COMPONENT
+// MAIN PAGE
 // ============================================================================
 export default function PortfolioPage() {
   const { theme, toggleTheme, mounted } = useTheme();
@@ -1599,14 +1679,11 @@ export default function PortfolioPage() {
         />
         <HeroSection onContactClick={() => setContactModalOpen(true)} />
         <AboutSection />
-        <ServicesSection />
+        <ServicesSection onContactClick={() => setContactModalOpen(true)} />
         <ProjectsSection />
         <ContactSection onContactClick={() => setContactModalOpen(true)} />
         <Footer />
-        <ContactModal
-          isOpen={contactModalOpen}
-          onClose={() => setContactModalOpen(false)}
-        />
+        <ContactModal isOpen={contactModalOpen} onClose={() => setContactModalOpen(false)} />
         <WhatsAppFAB />
       </main>
     </LazyMotion>
