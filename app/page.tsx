@@ -74,7 +74,8 @@ const siteConfig = {
     {
       icon: "GraduationCap",
       title: "Meditatii Programare",
-      shortDescription: "Invata programare de la zero sau avanseaza-ti cunostintele.",
+      shortDescription:
+        "Invata programare de la zero sau avanseaza-ti cunostintele.",
       fullDescription: `Ofer meditatii personalizate pentru studenti si profesionisti care vor sa invete programare sau sa-si imbunatateasca abilitatile existente.`,
       features: [
         "Lectii 1-on-1 adaptate nivelului tau",
@@ -90,7 +91,8 @@ const siteConfig = {
     {
       icon: "Globe",
       title: "Dezvoltare Web",
-      shortDescription: "Site-uri si aplicatii web moderne, rapide si optimizate.",
+      shortDescription:
+        "Site-uri si aplicatii web moderne, rapide si optimizate.",
       fullDescription: `Dezvolt site-uri web si aplicatii personalizate folosind cele mai noi tehnologii. De la landing pages simple la platforme complexe.`,
       features: [
         "Site-uri de prezentare & landing pages",
@@ -107,7 +109,8 @@ const siteConfig = {
   projects: [
     {
       title: "E-Commerce Platform",
-      description: "Platforma completa de comert electronic cu Next.js si Stripe",
+      description:
+        "Platforma completa de comert electronic cu Next.js si Stripe",
       tags: ["Next.js", "TypeScript", "Stripe", "Tailwind"],
       image: "/images/projects/ecommerce.jpg",
       liveUrl: "https://example.com",
@@ -116,7 +119,8 @@ const siteConfig = {
     },
     {
       title: "Dashboard Analytics",
-      description: "Dashboard interactiv pentru vizualizarea datelor in timp real",
+      description:
+        "Dashboard interactiv pentru vizualizarea datelor in timp real",
       tags: ["React", "D3.js", "Node.js", "MongoDB"],
       image: "/images/projects/dashboard.jpg",
       liveUrl: "https://example.com",
@@ -134,7 +138,8 @@ const siteConfig = {
     },
     {
       title: "Mobile App",
-      description: "Aplicatie mobila cross-platform pentru management de proiecte",
+      description:
+        "Aplicatie mobila cross-platform pentru management de proiecte",
       tags: ["React Native", "Firebase", "Redux", "TypeScript"],
       image: "/images/projects/mobile-app.jpg",
       liveUrl: "https://example.com",
@@ -181,7 +186,9 @@ function useTheme() {
   useEffect(() => {
     setMounted(true);
     const saved = localStorage.getItem("theme") as "light" | "dark" | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
     setTheme(saved || (prefersDark ? "dark" : "light"));
   }, []);
 
@@ -255,7 +262,7 @@ function MobileMenu({
             animate={{ scale: 1, borderRadius: "0%" }}
             exit={{ scale: 0, borderRadius: "100%" }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/50 origin-top-right"
+            className="absolute inset-0 bg-linear-to-br from-background via-background to-secondary/50 origin-top-right"
           />
 
           {/* Decorative elements */}
@@ -348,7 +355,7 @@ function MobileMenu({
                   </div>
                   {/* Animated underline */}
                   <m.div
-                    className="absolute bottom-3 left-10 right-0 h-px bg-gradient-to-r from-border to-transparent"
+                    className="absolute bottom-3 left-10 right-0 h-px bg-linear-to-r from-border to-transparent"
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
                     transition={{ delay: 0.1 * index }}
@@ -369,7 +376,7 @@ function MobileMenu({
                   onContactClick();
                   onClose();
                 }}
-                className="w-full py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-2xl font-semibold text-lg flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/25"
+                className="w-full py-4 bg-linear-to-r from-emerald-500 to-emerald-600 text-white rounded-2xl font-semibold text-lg flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/25"
                 whileTap={{ scale: 0.98 }}
               >
                 <Mail size={20} />
@@ -402,7 +409,12 @@ function MobileMenu({
                   className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500"
                   aria-label="WhatsApp"
                 >
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="22"
+                    height="22"
+                    fill="currentColor"
+                  >
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                   </svg>
                 </a>
@@ -500,7 +512,11 @@ function Navbar({
                     <m.span
                       layoutId="activeSection"
                       className="absolute inset-0 bg-secondary rounded-lg"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
                     />
                   )}
                   <span className="relative z-10">{link.label}</span>
@@ -613,9 +629,9 @@ function Laptop3D() {
         transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
       >
         {/* Laptop Screen */}
-        <div className="relative bg-gradient-to-b from-zinc-800 to-zinc-900 rounded-t-xl p-2 border border-zinc-700/50">
+        <div className="relative bg-linear-to-b from-zinc-800 to-zinc-900 rounded-t-xl p-2 border border-zinc-700/50">
           <div className="absolute top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-zinc-700" />
-          <div className="bg-zinc-950 rounded-lg overflow-hidden aspect-[16/10] relative">
+          <div className="bg-zinc-950 rounded-lg overflow-hidden aspect-16/10 relative">
             <div className="absolute inset-0 p-4 font-mono text-xs sm:text-sm">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -629,9 +645,9 @@ function Laptop3D() {
         </div>
         {/* Laptop Base */}
         <div className="relative">
-          <div className="h-3 bg-gradient-to-b from-zinc-700 to-zinc-800 rounded-b-sm" />
+          <div className="h-3 bg-linear-to-b from-zinc-700 to-zinc-800 rounded-b-sm" />
           <div className="h-1 bg-zinc-900 rounded-b-xl mx-4" />
-          <div className="h-2 bg-gradient-to-b from-zinc-800 to-zinc-900 rounded-b-xl mx-8 flex items-center justify-center">
+          <div className="h-2 bg-linear-to-b from-zinc-800 to-zinc-900 rounded-b-xl mx-8 flex items-center justify-center">
             <div className="w-16 h-1 bg-zinc-700/50 rounded-full" />
           </div>
         </div>
@@ -667,7 +683,10 @@ function CodeAnimation({ code }: { code: string }) {
   const highlightSyntax = (text: string) => {
     return text
       .replace(/(\/\/.*)/g, '<span class="text-zinc-500">$1</span>')
-      .replace(/\b(import|export|default|function|return|const)\b/g, '<span class="text-pink-400">$1</span>')
+      .replace(
+        /\b(import|export|default|function|return|const)\b/g,
+        '<span class="text-pink-400">$1</span>',
+      )
       .replace(/\b(from|className)\b/g, '<span class="text-cyan-400">$1</span>')
       .replace(/(['"`].*?['"`])/g, '<span class="text-emerald-400">$1</span>')
       .replace(/(&lt;\/?[a-zA-Z.]+)/g, '<span class="text-blue-400">$1</span>')
@@ -675,10 +694,12 @@ function CodeAnimation({ code }: { code: string }) {
   };
 
   return (
-    <pre className="text-zinc-300 leading-relaxed whitespace-pre-wrap break-words">
+    <pre className="text-zinc-300 leading-relaxed whitespace-pre-wrap wrap-break-word">
       <code
         dangerouslySetInnerHTML={{
-          __html: highlightSyntax(displayedCode.replace(/</g, "&lt;").replace(/>/g, "&gt;")),
+          __html: highlightSyntax(
+            displayedCode.replace(/</g, "&lt;").replace(/>/g, "&gt;"),
+          ),
         }}
       />
       <span className="animate-pulse text-cyan-400">|</span>
@@ -691,9 +712,12 @@ function CodeAnimation({ code }: { code: string }) {
 // ============================================================================
 function HeroSection({ onContactClick }: { onContactClick: () => void }) {
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center pt-16 pb-8 px-4 relative overflow-hidden">
+    <section
+      id="hero"
+      className="min-h-screen flex items-center justify-center pt-16 pb-8 px-4 relative overflow-hidden"
+    >
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] dark:opacity-100 opacity-50" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-size-[50px_50px] dark:opacity-100 opacity-50" />
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
       </div>
@@ -873,12 +897,14 @@ function AnimatedImage({
         className="relative w-full h-full"
       >
         {!isLoaded && !hasError && (
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/50 to-secondary animate-pulse" />
+          <div className="absolute inset-0 bg-linear-to-r from-secondary via-secondary/50 to-secondary animate-pulse" />
         )}
 
         {hasError && (
-          <div className="absolute inset-0 bg-gradient-to-br from-zinc-700 to-zinc-900 flex items-center justify-center">
-            <span className="text-4xl md:text-6xl font-bold text-zinc-500">{fallbackText}</span>
+          <div className="absolute inset-0 bg-linear-to-br from-zinc-700 to-zinc-900 flex items-center justify-center">
+            <span className="text-4xl md:text-6xl font-bold text-zinc-500">
+              {fallbackText}
+            </span>
           </div>
         )}
 
@@ -895,7 +921,7 @@ function AnimatedImage({
         )}
 
         <m.div
-          className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0"
+          className="absolute inset-0 bg-linear-to-tr from-transparent via-white/10 to-transparent opacity-0"
           whileHover={{ opacity: 1, x: ["100%", "-100%"] }}
           transition={{ duration: 0.6 }}
         />
@@ -919,7 +945,11 @@ function AboutSection() {
   const rotate = useTransform(scrollYProgress, [0, 1], [-5, 5]);
 
   return (
-    <section id="about" ref={ref} className="py-24 px-4 relative overflow-hidden">
+    <section
+      id="about"
+      ref={ref}
+      className="py-24 px-4 relative overflow-hidden"
+    >
       <div className="absolute top-1/2 left-0 w-72 h-72 bg-emerald-500/5 rounded-full blur-3xl -translate-y-1/2" />
 
       <div className="max-w-6xl mx-auto">
@@ -936,12 +966,15 @@ function AboutSection() {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Cine sunt eu?
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-linear-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
         </m.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <m.div style={{ y }} className="relative order-2 lg:order-1">
-            <m.div style={{ scale, rotate }} className="relative aspect-[4/5] max-w-md mx-auto">
+            <m.div
+              style={{ scale, rotate }}
+              className="relative aspect-4/5 max-w-md mx-auto"
+            >
               <m.div
                 className="absolute -inset-4 border-2 border-emerald-500/20 rounded-2xl"
                 animate={{ rotate: [0, 2, 0, -2, 0] }}
@@ -953,9 +986,9 @@ function AboutSection() {
                   src={siteConfig.profileImage}
                   alt={siteConfig.name}
                   fallbackText="SR"
-                  className="absolute inset-0"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent" />
                 <m.div
                   className="absolute bottom-0 left-0 right-0 p-6"
                   initial={{ opacity: 0, y: 20 }}
@@ -971,7 +1004,7 @@ function AboutSection() {
               </div>
 
               <m.div
-                className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-emerald-500/20 to-blue-500/20 rounded-2xl border border-white/10 backdrop-blur-sm flex items-center justify-center"
+                className="absolute -top-6 -right-6 w-24 h-24 bg-linear-to-br from-emerald-500/20 to-blue-500/20 rounded-2xl border border-white/10 backdrop-blur-sm flex items-center justify-center"
                 animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
                 transition={{ duration: 5, repeat: Infinity }}
               >
@@ -979,7 +1012,7 @@ function AboutSection() {
               </m.div>
 
               <m.div
-                className="absolute -bottom-4 -left-4 w-20 h-20 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full border border-white/10 backdrop-blur-sm flex items-center justify-center"
+                className="absolute -bottom-4 -left-4 w-20 h-20 bg-linear-to-br from-blue-500/20 to-cyan-500/20 rounded-full border border-white/10 backdrop-blur-sm flex items-center justify-center"
                 animate={{ y: [0, 10, 0], rotate: [0, -5, 0] }}
                 transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
               >
@@ -1008,12 +1041,14 @@ function AboutSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   whileHover={{ y: -5, scale: 1.02 }}
-                  className="p-5 bg-gradient-to-br from-secondary/80 to-secondary/40 rounded-2xl border border-border hover:border-emerald-500/30 transition-colors"
+                  className="p-5 bg-linear-to-br from-secondary/80 to-secondary/40 rounded-2xl border border-border hover:border-emerald-500/30 transition-colors"
                 >
                   <m.div className="text-3xl sm:text-4xl font-bold text-foreground mb-1">
                     {stat.value}
                   </m.div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="text-sm text-muted-foreground">
+                    {stat.label}
+                  </div>
                 </m.div>
               ))}
             </div>
@@ -1025,7 +1060,14 @@ function AboutSection() {
               transition={{ delay: 0.5 }}
               className="mt-8 flex flex-wrap gap-2"
             >
-              {["React", "Next.js", "TypeScript", "Node.js", "Three.js", "Tailwind"].map((tech, i) => (
+              {[
+                "React",
+                "Next.js",
+                "TypeScript",
+                "Node.js",
+                "Three.js",
+                "Tailwind",
+              ].map((tech, i) => (
                 <m.span
                   key={tech}
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -1070,7 +1112,7 @@ function ServiceCard({
       className="group relative"
     >
       {/* Glow effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-blue-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-linear-to-br from-emerald-500/20 to-blue-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       <m.div
         className="relative bg-card rounded-3xl border border-border hover:border-emerald-500/30 transition-all duration-300 overflow-hidden"
@@ -1079,14 +1121,21 @@ function ServiceCard({
         {/* Main content */}
         <div className="p-8">
           <m.div
-            className="w-16 h-16 bg-gradient-to-br from-emerald-500/20 to-blue-500/20 rounded-2xl flex items-center justify-center mb-6"
+            className="w-16 h-16 bg-linear-to-br from-emerald-500/20 to-blue-500/20 rounded-2xl flex items-center justify-center mb-6"
             whileHover={{ rotate: 5, scale: 1.1 }}
           >
-            <Icon size={32} className="text-emerald-600 dark:text-emerald-400" />
+            <Icon
+              size={32}
+              className="text-emerald-600 dark:text-emerald-400"
+            />
           </m.div>
 
-          <h3 className="text-2xl font-bold text-foreground mb-3">{service.title}</h3>
-          <p className="text-muted-foreground mb-6">{service.shortDescription}</p>
+          <h3 className="text-2xl font-bold text-foreground mb-3">
+            {service.title}
+          </h3>
+          <p className="text-muted-foreground mb-6">
+            {service.shortDescription}
+          </p>
 
           {/* Expand button */}
           <m.button
@@ -1112,7 +1161,9 @@ function ServiceCard({
               className="overflow-hidden"
             >
               <div className="px-8 pb-8 border-t border-border pt-6">
-                <p className="text-muted-foreground mb-6">{service.fullDescription}</p>
+                <p className="text-muted-foreground mb-6">
+                  {service.fullDescription}
+                </p>
 
                 {/* Features list */}
                 <div className="space-y-3 mb-6">
@@ -1124,7 +1175,10 @@ function ServiceCard({
                       transition={{ delay: i * 0.05 }}
                       className="flex items-start gap-3"
                     >
-                      <CheckCircle2 size={18} className="text-emerald-500 mt-0.5 shrink-0" />
+                      <CheckCircle2
+                        size={18}
+                        className="text-emerald-500 mt-0.5 shrink-0"
+                      />
                       <span className="text-sm text-foreground">{feature}</span>
                     </m.div>
                   ))}
@@ -1133,13 +1187,15 @@ function ServiceCard({
                 {/* Pricing */}
                 <div className="flex items-center gap-2 mb-6 p-4 bg-emerald-500/10 rounded-xl">
                   <Clock size={18} className="text-emerald-500" />
-                  <span className="font-semibold text-foreground">{service.pricing}</span>
+                  <span className="font-semibold text-foreground">
+                    {service.pricing}
+                  </span>
                 </div>
 
                 {/* CTA */}
                 <m.button
                   onClick={onContactClick}
-                  className="w-full py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl font-semibold flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25"
+                  className="w-full py-4 bg-linear-to-r from-emerald-500 to-emerald-600 text-white rounded-xl font-semibold flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -1160,7 +1216,10 @@ function ServiceCard({
 // ============================================================================
 function ServicesSection({ onContactClick }: { onContactClick: () => void }) {
   return (
-    <section id="services" className="py-24 px-4 bg-secondary/30 relative overflow-hidden">
+    <section
+      id="services"
+      className="py-24 px-4 bg-secondary/30 relative overflow-hidden"
+    >
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
 
       <div className="max-w-6xl mx-auto relative">
@@ -1174,10 +1233,13 @@ function ServicesSection({ onContactClick }: { onContactClick: () => void }) {
           <span className="text-sm font-mono text-emerald-600 dark:text-emerald-400 mb-4 block">
             02. SERVICII
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Ce ofer?</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            Ce ofer?
+          </h2>
+          <div className="w-20 h-1 bg-linear-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-            Servicii personalizate pentru a te ajuta sa inveti programare sau sa-ti construiesti prezenta online
+            Servicii personalizate pentru a te ajuta sa inveti programare sau
+            sa-ti construiesti prezenta online
           </p>
         </m.div>
 
@@ -1243,7 +1305,7 @@ function ProjectCard({
       className="group relative overflow-hidden rounded-2xl border border-border bg-card hover:border-emerald-500/30 transition-all duration-500"
     >
       <m.div
-        className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+        className={`absolute inset-0 bg-linear-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
       />
 
       {/* Project Image */}
@@ -1256,7 +1318,7 @@ function ProjectCard({
         />
 
         <m.div
-          className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent"
+          className="absolute inset-0 bg-linear-to-t from-card via-card/50 to-transparent"
           animate={{ opacity: isHovered ? 0.9 : 0.7 }}
         />
 
@@ -1332,7 +1394,7 @@ function ProjectCard({
 
       {/* Corner accent */}
       <m.div
-        className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-emerald-500/20 to-transparent"
+        className="absolute top-0 right-0 w-20 h-20 bg-linear-to-bl from-emerald-500/20 to-transparent"
         animate={{ scale: isHovered ? 1.5 : 1 }}
         transition={{ duration: 0.5 }}
       />
@@ -1359,10 +1421,13 @@ function ProjectsSection() {
           <span className="text-sm font-mono text-emerald-600 dark:text-emerald-400 mb-4 block">
             03. PORTOFOLIU
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Proiecte Recente</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            Proiecte Recente
+          </h2>
+          <div className="w-20 h-1 bg-linear-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-            O selectie de proiecte care demonstreaza abilitatile mele in dezvoltarea web moderna
+            O selectie de proiecte care demonstreaza abilitatile mele in
+            dezvoltarea web moderna
           </p>
         </m.div>
 
@@ -1402,9 +1467,12 @@ function ProjectsSection() {
 // ============================================================================
 function ContactSection({ onContactClick }: { onContactClick: () => void }) {
   return (
-    <section id="contact" className="py-24 px-4 bg-secondary/30 relative overflow-hidden">
+    <section
+      id="contact"
+      className="py-24 px-4 bg-secondary/30 relative overflow-hidden"
+    >
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-emerald-500/10 via-blue-500/10 to-emerald-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 bg-linear-to-r from-emerald-500/10 via-blue-500/10 to-emerald-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-4xl mx-auto text-center relative">
@@ -1421,7 +1489,8 @@ function ContactSection({ onContactClick }: { onContactClick: () => void }) {
             Hai sa Colaboram
           </h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-            Ai un proiect in minte sau vrei sa inveti programare? Sunt mereu deschis pentru noi oportunitati.
+            Ai un proiect in minte sau vrei sa inveti programare? Sunt mereu
+            deschis pentru noi oportunitati.
           </p>
 
           <m.button
@@ -1432,7 +1501,10 @@ function ContactSection({ onContactClick }: { onContactClick: () => void }) {
           >
             <Mail size={22} />
             Trimite un Mesaj
-            <m.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1, repeat: Infinity }}>
+            <m.span
+              animate={{ x: [0, 5, 0] }}
+              transition={{ duration: 1, repeat: Infinity }}
+            >
               <ArrowRight size={22} />
             </m.span>
           </m.button>
@@ -1508,7 +1580,13 @@ function Footer() {
 // ============================================================================
 // CONTACT MODAL
 // ============================================================================
-function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+function ContactModal({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -1531,7 +1609,9 @@ function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h3 className="text-2xl font-bold text-foreground">Contact</h3>
-                <p className="text-sm text-muted-foreground mt-1">Alege metoda preferata</p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Alege metoda preferata
+                </p>
               </div>
               <m.button
                 onClick={onClose}
@@ -1556,9 +1636,14 @@ function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
                 </div>
                 <div className="flex-1">
                   <div className="font-semibold text-foreground">Email</div>
-                  <div className="text-sm text-muted-foreground">{siteConfig.email}</div>
+                  <div className="text-sm text-muted-foreground">
+                    {siteConfig.email}
+                  </div>
                 </div>
-                <ArrowRight size={20} className="text-muted-foreground group-hover:text-emerald-500 transition-colors" />
+                <ArrowRight
+                  size={20}
+                  className="text-muted-foreground group-hover:text-emerald-500 transition-colors"
+                />
               </m.a>
 
               <m.a
@@ -1572,9 +1657,14 @@ function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
                 </div>
                 <div className="flex-1">
                   <div className="font-semibold text-foreground">Telefon</div>
-                  <div className="text-sm text-muted-foreground">{siteConfig.phone}</div>
+                  <div className="text-sm text-muted-foreground">
+                    {siteConfig.phone}
+                  </div>
                 </div>
-                <ArrowRight size={20} className="text-muted-foreground group-hover:text-emerald-500 transition-colors" />
+                <ArrowRight
+                  size={20}
+                  className="text-muted-foreground group-hover:text-emerald-500 transition-colors"
+                />
               </m.a>
 
               <m.a
@@ -1591,8 +1681,12 @@ function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <div className="font-semibold text-emerald-600 dark:text-emerald-400">WhatsApp</div>
-                  <div className="text-sm text-muted-foreground">Mesaj instant</div>
+                  <div className="font-semibold text-emerald-600 dark:text-emerald-400">
+                    WhatsApp
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    Mesaj instant
+                  </div>
                 </div>
                 <ArrowRight size={20} className="text-emerald-500" />
               </m.a>
@@ -1683,7 +1777,10 @@ export default function PortfolioPage() {
         <ProjectsSection />
         <ContactSection onContactClick={() => setContactModalOpen(true)} />
         <Footer />
-        <ContactModal isOpen={contactModalOpen} onClose={() => setContactModalOpen(false)} />
+        <ContactModal
+          isOpen={contactModalOpen}
+          onClose={() => setContactModalOpen(false)}
+        />
         <WhatsAppFAB />
       </main>
     </LazyMotion>
