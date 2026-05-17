@@ -108,43 +108,24 @@ const siteConfig = {
   ],
   projects: [
     {
-      title: "E-Commerce Platform",
+      title: "LogiFleet - Management de Flotă",
       description:
-        "Platforma completa de comert electronic cu Next.js si Stripe",
-      tags: ["Next.js", "TypeScript", "Stripe", "Tailwind"],
-      image: "/images/projects/ecommerce.jpg",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/stefan-razvan/ecommerce",
-      color: "from-blue-500/20 to-cyan-500/20",
+        "Lucrarea mea de licență: o platformă integrată pentru administrarea vehiculelor comerciale. Include monitorizarea locației prin GPS (integrare Traccar), gestionarea rutelor și a șoferilor, precum și rapoarte automate pentru costuri și mentenanță. Interfața este complet bilingvă (Română/Engleză).",
+      tags: ["React", "Node.js", "MongoDB Atlas", "Leaflet"],
+      image: "/images/projects/dashboard.webp",
+      liveUrl: "#",
+      githubUrl: "https://github.com/Razvan0307/SR-WebSite",
+      color: "from-blue-500/20 to-emerald-500/20",
     },
     {
-      title: "Dashboard Analytics",
+      title: "HSSE Asset Inspector (NFC)",
       description:
-        "Dashboard interactiv pentru vizualizarea datelor in timp real",
-      tags: ["React", "D3.js", "Node.js", "MongoDB"],
-      image: "/images/projects/dashboard.jpg",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/stefan-razvan/dashboard",
-      color: "from-emerald-500/20 to-teal-500/20",
-    },
-    {
-      title: "VR Gallery",
-      description: "Galerie de arta in realitate virtuala cu Three.js",
-      tags: ["Three.js", "WebXR", "GLSL", "React"],
-      image: "/images/projects/vr-gallery.jpg",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/stefan-razvan/vr-gallery",
-      color: "from-orange-500/20 to-amber-500/20",
-    },
-    {
-      title: "Mobile App",
-      description:
-        "Aplicatie mobila cross-platform pentru management de proiecte",
-      tags: ["React Native", "Firebase", "Redux", "TypeScript"],
-      image: "/images/projects/mobile-app.jpg",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/stefan-razvan/mobile-app",
-      color: "from-rose-500/20 to-pink-500/20",
+        "Aplicație dezvoltată în internship-ul la DP World Constanța pentru digitalizarea inspecțiilor de siguranță. Utilizează tehnologia NFC pentru identificarea rapidă a activelor (stingătoare, hamuri), permite raportarea defectelor cu dovezi foto și menține un istoric complet al scanărilor pentru conformitate HSSE.",
+      tags: ["Next.js", "NFC Web API", "HSSE Safety", "Asset Management"],
+      image: "/images/projects/nfc-app.png",
+      liveUrl: "#",
+      githubUrl: "https://github.com/Razvan0307/hse-nfc-app",
+      color: "from-orange-500/20 to-red-500/20",
     },
   ],
   codeSnippet: `// Hello World in Next.js
@@ -827,18 +808,30 @@ function HeroSection({ onContactClick }: { onContactClick: () => void }) {
         <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30"
         >
-          <m.a
-            href="#about"
+          <m.button
+            onClick={() => {
+              const aboutSection = document.getElementById("about");
+              if (aboutSection) {
+                const navbarHeight = 80; // înălțimea bării de navigație
+                const extraOffset = 40; // cât mai vrei să coboare (poți mări, ex: 100)
+                const elementPosition =
+                  aboutSection.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({
+                  top: elementPosition - navbarHeight - extraOffset,
+                  behavior: "smooth",
+                });
+              }
+            }}
             className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
             <span className="text-xs">Scroll</span>
             <ChevronDown size={20} />
-          </m.a>
+          </m.button>
         </m.div>
       </div>
     </section>
@@ -885,7 +878,7 @@ function AnimatedImage({
   return (
     <m.div
       ref={ref}
-      className={`relative overflow-hidden ${className}`}
+      className={`relative overflow-hidden w-full h-full ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ perspective: "1000px" }}
@@ -1314,7 +1307,7 @@ function ProjectCard({
           src={project.image}
           alt={project.title}
           fallbackText={project.title.slice(0, 2).toUpperCase()}
-          className="absolute inset-0"
+          className="w-full h-full object-cover"
         />
 
         <m.div
@@ -1355,13 +1348,13 @@ function ProjectCard({
         <m.div
           className="absolute top-4 left-4 flex flex-wrap gap-2"
           initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : -10 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
           {project.tags.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="px-2 py-1 text-xs font-medium bg-white/10 backdrop-blur-sm rounded-full text-white"
+              className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md border border-white/10 rounded-md text-white shadow-xl"
             >
               {tag}
             </span>
