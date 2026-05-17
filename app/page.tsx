@@ -34,6 +34,8 @@ import {
   CheckCircle2,
   BookOpen,
   Laptop,
+  Layout,
+  Calculator,
 } from "lucide-react";
 
 // ============================================================================
@@ -43,10 +45,10 @@ const siteConfig = {
   name: "Stefan Ionut Razvan",
   title: "Full-Stack Developer",
   subtitle: "Masterand in Medii Virtuale",
-  email: "contact@stefan-razvan.dev",
-  phone: "+40 700 000 000",
-  whatsapp: "40700000000",
-  profileImage: "/images/profile.jpg", // Adaugati imaginea voastra aici
+  email: "stefan.razvan2103@gmail.com",
+  phone: "+40 732 336 734",
+  whatsapp: "40732336734",
+  profileImage: "/images/profile.jpg",
   social: {
     github: "https://github.com/stefan-razvan",
     linkedin: "https://linkedin.com/in/stefan-razvan",
@@ -69,41 +71,55 @@ const siteConfig = {
       { label: "Tehnologii", value: "15+" },
     ],
   },
-  // Doar 2 servicii: Meditatii si Dezvoltare Web
+
   services: [
     {
-      icon: "GraduationCap",
-      title: "Meditatii Programare",
+      title: "Dezvoltare Aplicații Web",
+      icon: "Layout",
       shortDescription:
-        "Invata programare de la zero sau avanseaza-ti cunostintele.",
-      fullDescription: `Ofer meditatii personalizate pentru studenti si profesionisti care vor sa invete programare sau sa-si imbunatateasca abilitatile existente.`,
+        "Soluții full-stack moderne, de la arhitectură la implementare.",
+      fullDescription:
+        "Construiesc platforme web scalabile (precum sisteme de fleet management sau monitorizare asset-uri) folosind tehnologii de ultimă oră pentru performanță și securitate.",
       features: [
-        "Lectii 1-on-1 adaptate nivelului tau",
-        "HTML, CSS, JavaScript de baza pana la avansat",
-        "React, Next.js si framework-uri moderne",
-        "Proiecte practice pentru portofoliu",
-        "Pregatire interviuri tehnice",
-        "Flexibilitate program (online/offline)",
+        "Arhitectură React / Next.js și Node.js",
+        "Baze de date cloud (MongoDB Atlas / SQL)",
+        "Integrare API-uri GPS și tehnologie NFC",
+        "Interfețe intuitive bilingve (i18next)",
       ],
-      pricing: "Pret: de la 80 RON / ora",
-      cta: "Programeaza o sedinta",
+      pricing: "De la 500€ / proiect",
+      cta: "Hai să discutăm proiectul tău",
     },
     {
-      icon: "Globe",
-      title: "Dezvoltare Web",
+      title: "Meditații Matematică (1-12)",
+      icon: "Calculator",
       shortDescription:
-        "Site-uri si aplicatii web moderne, rapide si optimizate.",
-      fullDescription: `Dezvolt site-uri web si aplicatii personalizate folosind cele mai noi tehnologii. De la landing pages simple la platforme complexe.`,
+        "Pregătire pentru succesul la Evaluarea Națională și Bacalaureat.",
+      fullDescription:
+        "Ședințe personalizate axate pe înțelegerea logică a matematicii. Ajut elevii să recupereze materia și să obțină rezultate excelente la examenele naționale.",
       features: [
-        "Site-uri de prezentare & landing pages",
-        "Magazine online (e-commerce)",
-        "Aplicatii web personalizate",
-        "Design responsive (mobil, tableta, desktop)",
-        "Optimizare SEO & performanta",
-        "Mentenanta si suport continuu",
+        "Explicații logice adaptate nivelului elevului",
+        "Pregătire intensivă pentru subiecte de examen",
+        "Suport constant pentru teme și evaluări",
+        "Monitorizarea progresului lunar",
       ],
-      pricing: "Pret: de la 500 EUR / proiect",
-      cta: "Cere o oferta",
+      pricing: "80 RON / ședință (2h)",
+      cta: "Rezervă o ședință",
+    },
+    {
+      title: "Meditații Informatică (1-12)",
+      icon: "Code2",
+      shortDescription:
+        "Programare C++, algoritmi și logică pentru viitorii ingineri.",
+      fullDescription:
+        "Predau bazele programării și algoritmică avansată. Ne concentrăm pe rezolvarea problemelor de tip olimpiadă sau bacalaureat și pe dezvoltarea gândirii logice.",
+      features: [
+        "Bazele programării în limbajul C++",
+        "Algoritmi și structuri de date",
+        "Pregătire completă pentru proba de BAC",
+        "Dezvoltare de mici proiecte practice",
+      ],
+      pricing: "100 RON / ședință (2h)",
+      cta: "Vreau să învăț programare",
     },
   ],
   projects: [
@@ -148,13 +164,14 @@ export default function App() {
 // ============================================================================
 // ICON MAPPING
 // ============================================================================
-const iconMap: Record<string, React.ElementType> = {
-  Code2,
-  GraduationCap,
-  Globe,
-  Sparkles,
-  BookOpen,
-  Laptop,
+const iconMap: Record<string, any> = {
+  Layout: Layout,
+  Calculator: Calculator,
+  Code2: Code2,
+  Github: Github,
+  ExternalLink: ExternalLink,
+  Mail: Mail,
+  Phone: Phone,
 };
 
 // ============================================================================
@@ -1084,6 +1101,7 @@ function AboutSection() {
 // ============================================================================
 // SERVICE CARD - Expandable with details
 // ============================================================================
+
 function ServiceCard({
   service,
   index,
